@@ -1,0 +1,12 @@
+name: geos604
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - pip
+    - obspy
+    - cartopy
+    - pyyaml
+    - pip:
+      - -e .
+       
