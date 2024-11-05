@@ -1,0 +1,1 @@
+Please create and complete your homework as Jupyter notebooks inside this directory.Homeworks should be named `<LAST_NAME>_GEOS604_HW<#>.ipynb` where <LAST\_NAME> is your own last name, and <#> is the homework number. Please try to commit early and often so there is a record of your progress!
