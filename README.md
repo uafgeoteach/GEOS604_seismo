@@ -1,5 +1,7 @@
 # GEOS604_seismo
-GEOS 604 Seismology (U. Alaska Fairbanks)
+GEOS 604 &mdash; Seismology   
+Department of Geosciences, University of Alaska Fairbanks  
+Bryant Chow. 
 
 This class repository contains a Conda environment install file `environment.yml` that is necessary to complete all homeworks. 
 
