@@ -25,7 +25,7 @@ On your personal computer, or the computer that you will be doing homework on:
 
 3. Create a new Conda environment from the `environment.yml` file
     ```bash
-        conda create --file=environment.yml
+        conda env create -f environment.yml
     ```
 4. Activate the Conda environment (you will need to do this for all homework)
     ```bash
