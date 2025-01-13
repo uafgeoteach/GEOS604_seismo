@@ -22,4 +22,4 @@ To run the notebooks, we will be using [Jupyter Lab](https://jupyter.org/) which
 jupyter lab
 ```
 
-All homework assignments are located in `homeworks/` as either Markdown files or Jupyter notebooks. Markdown files are automatically rendered when viewed in GitHub. 
+All homework assignments are located in the `homework/` directory. The first homework is as either Markdown files or Jupyter notebooks. Markdown files are automatically rendered when viewed in GitHub. 
