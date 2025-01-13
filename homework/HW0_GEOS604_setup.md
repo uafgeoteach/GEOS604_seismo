@@ -1,4 +1,4 @@
-# Homework 1: Stress and Strain
+# Homework 0
 UAF GEOS604 -- Seismology  
 Bryant Chow [bhchow@alaska.edu](bhchow@alaska.edu)  
 Last Tested: DD/MM/YYYY
@@ -6,11 +6,12 @@ Last Tested: DD/MM/YYYY
 ## Semester: Spring 2025
 - **Assigned**: DD/MM/YYYY 
 - **Due**: DD/MM/YYYY at 22:00:00 
+- Total points: 1.0
 
 ## Instructions:
-1. Homeworks will always be out of 10 points, each problem will say how many points it is worth. 
+1. Unless otherwise specificied, homeworks will be graded out of 10 points, each problem will say how many points it is worth. 
 2. Late homework will be deducted 10\% of the overall grade, so the max total you can get for late homework is 9/10 points
-3. The late policy is {\bf not} cumulative, but please try to turn in homework in a timely matter
+3. The late policy is not cumulative, but please try to turn in homework in a timely matter
 4. Some problems may have multiple sub-parts that will divide the point total for a given problem
 5. Please do the homework in order, some later problems may relate to previous parts
 6. You are allowed (and encouraged) to work as partners or in groups, but each individual student must turn in their own assignment, written in their own words (e.g., don't copy-paste code blocks from each other. Your code may look similar but should not look exactly the same!
@@ -28,9 +29,7 @@ Last Tested: DD/MM/YYYY
         
     ```
 
-
-
-## Problem 0: Conda environment setup [0.25 Points]
+## Problem 0: Conda environment setup [0.8 Points]
 
 On your personal computer, or the computer that you will be doing homework on:
 
@@ -57,9 +56,9 @@ On your personal computer, or the computer that you will be doing homework on:
     ```bash
         conda activate geos604
     ```
-1. Change directories into the `notebooks/` directory, you will do your homework here
+1. Change directories into the `homeworks/` directory, you will find the homework assignments here
     ```bash
-        cd notebooks/
+        cd homeworks/
     ``` 
 1. Jupyter was installed in this environment, start a new Jupyter environment
     ```bash
@@ -75,18 +74,17 @@ On your personal computer, or the computer that you will be doing homework on:
     ```bash
         git add -A  # add the new file to tracking
         git commit -m "first commit!"  # or whatever commit message you wanbt
-        git push  # 
+        git push  
     ```
 
 1. Please Complete your homeworks in these Jupyter notebook. If text answers are required please write them in markdown. If you need to show math, you can use latex-style math mode to do so 
     >**NOTE**: If you are not familiar with Latex, this is a great opportunity to learn, it is an incredibly powerful tool for document preparation. But since this is not a class on Latex, you are welcome to hand write math/derivations. Please email me if this is your preferred method and I can provide instructions on how to upload these in conjunction with your Juypter notebooks.
 
 
->**PLEASE READ**: It would behoove you to commit and push your work often, so that there is a timestamped, version controlled backup incase your computer fails, or you are unable to complete your assignment. If you tell me you can't turn in your homework because "my dog ate my harddrive!", I will likely take into account the commit history for your given assignment when making any decisions/exceptions.
+>**IMPORTANT, PLEASE READ**: It would behoove you to commit and push your work often, so that there is a timestamped, version controlled backup incase your computer fails, or you are unable to complete your assignment. If you tell me you can't turn in your homework because "my dog ate my harddrive!", I will take into account the commit history for your given assignment when making any decisions/exceptions.
 
 
-
-# Problem N [0.25 Points]
+## Problem N [0.2 Points]
 
 1. Approximately how much time did you spend on this homework assignment?
 2. Did you find this homework particularly easy, adequate, or difficult?
