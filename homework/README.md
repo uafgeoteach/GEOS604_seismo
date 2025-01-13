@@ -1,17 +1,19 @@
 # Homework 0
-UAF GEOS604 -- Seismology  
+UAF GEOS604 &mdash; Seismology  
 Bryant Chow [bhchow@alaska.edu](bhchow@alaska.edu)  
 
 ## Semester: Spring 2025
-- **Assigned**: 01/14/2025 
-- **Due**: 01/21/2025 at 14:00:
-- Total points: 1.0
+- **Assigned:** 01/14/2025 
+- **Due Date and Time:** 01/21/2025 at 14:00 AKST
+- **Total points:** 1.0
 
-## Problem 0: Conda environment setup [1.0 Point]
+---------------
+
+## Problem 1: Conda environment setup [1.0 Point]
 
 On your personal computer, or the computer that you will be doing homework on:
 
->**NOTE** Steps 1&ndash;5 are one-time instructions, once you do this for HW1, you will not have to re-run these commands. Steps 6&ndash;?? will need to be run each time you start a new homework
+>**NOTE** Steps 1&ndash;5 are one-time instructions, once you do this for HW0, you will not have to re-run these commands. 
 
 1. Download and install Miniconda if you don't already have it: https://docs.anaconda.com/miniconda/
 
@@ -46,7 +48,7 @@ On your personal computer, or the computer that you will be doing homework on:
 	2. Did you find this homework particularly easy, adequate, or difficult?
 	3. Any feedback on the homework?
 
-9. Take a screenshot of your web browser showing the Jupyter Lab interface and the answers your wrote in part (8).
+9. Take a screenshot of your web browser showing the Jupyter Lab interface and the answers your wrote in part (8)
 
 10. Upload your screenshot to your homework submission directory in the class Google Drive.
 
