@@ -7,13 +7,15 @@
 
 ## Setup
 
+*See also homework/README.md*
+
 To do the homework assignments in this repository, you will need a [Conda](https://anaconda.org/anaconda/conda) environment. I recommend installing [Miniconda](https://docs.anaconda.com/miniconda/install/#quick-command-line-install)
 Once you have installed Miniconda, run the following commands to clone the class repository and install the class environment.
 ```bash
 cd <PATH_TO_WORKING_DIRECTORY>
 git clone git@github.com:uafgeoteach/GEOS604_seismo.git
 cd GEOS604_seismo
-conda env create -f environment.yml
+conda create --file=environment.yml
 conda activate geos604
 ```
 
