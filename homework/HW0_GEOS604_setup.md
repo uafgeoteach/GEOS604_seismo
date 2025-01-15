@@ -15,7 +15,7 @@ On your personal computer, or the computer that you will be doing homework on:
 
 1. Download and install Miniconda if you don't already have it: https://docs.anaconda.com/miniconda/
 
-2. Clone the course repository to a directory where you will do homework 
+2. In a Terminal, clone the course repository to a directory where you will do homework 
     ```bash
         git clone https://github.com/UAFGEOTEACH/GEOS604_seismo.git
         cd GEOS604_seismo
