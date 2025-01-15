@@ -5,7 +5,7 @@ Bryant Chow [bhchow@alaska.edu](bhchow@alaska.edu)
 ## Semester: Spring 2025
 - **Assigned**: 01/14/2025 
 - **Due**: 01/21/2025 at 14:00:
-- Total points: 1.0
+- Total points: 1.0 (no late penalties)
 
 ## Problem 0: Conda environment setup [1.0 Point]
 
