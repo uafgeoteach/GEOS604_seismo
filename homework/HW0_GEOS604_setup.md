@@ -39,16 +39,14 @@ On your personal computer, or the computer that you will be doing homework on:
     ```
     This should open up a web browser with the Jupyter interface (if it doesn't click on the link that comes at the end of the startup logs `http://localhost:8888/tree...`) 
 
-7. In the web browser interface, double click the Jupyter notebook for Homework 1.
-
-8. Open the `Text File` app from the launcher and in the created text file, answer the following questions
+7. In the web browser interface, open the `Text File` app from the launcher. In the created text file, please answer the following questions:
 	1. Approximately how much time did you spend on this homework assignment?
 	2. Did you find this homework particularly easy, adequate, or difficult?
 	3. Any feedback on the homework?
 
-9. Take a screenshot of your web browser showing the Jupyter Lab interface and the answers your wrote in part (8).
+8. Take a screenshot of your web browser showing the Jupyter Lab interface and the answers your wrote in part (8).
 
-10. Upload your screenshot to your homework submission directory in the class Google Drive.
+9. Upload your screenshot to your homework submission directory in the class Google Drive.
 
 
 
