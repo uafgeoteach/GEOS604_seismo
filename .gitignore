@@ -1,3 +1,8 @@
+# GEOS604 Student Homework
+my_homework/*.ipynb
+my_homework/*.pdf
+my_homework_backup*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
