@@ -5,4 +5,4 @@
 **Instructor:** Bryant Chow  
 **Website:** https://bryantchow.com/teaching/geos604
 
-**Setup:** See `homework/README.md` for setup instructions in Homework 0 
+**Setup:** See `homework/HW0_GEOS604_setup.md` for environment setup instructions
