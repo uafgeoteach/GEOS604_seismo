@@ -2,12 +2,12 @@
 - **Course:** UAF GEOS604 &mdash; Seismology  
 - **Instructor:** Bryant Chow ([bhchow@alaska.edu](bhchow@alaska.edu))
 - **Course Website:** [https://bryantchow.com/teaching/geos604](https://bryantchow.com/teaching/geos604) 
-- **Last Modified:**  01/16/25
+- **Last Modified:**  01/17/25
 
 ## Semester: Spring 2025
 - **Total Points**: 6
-- **Assigned**: Tuesday Jan. 14, 2025
-- **Due Date and Time**: Tuesday Jan. 22, 2025 at 14:00:00 AK
+- **Assigned**: Jan. 16, 2025
+- **Due Date and Time**: Jan. 23, 2025 at the beginning of class
 
 
 ## Submitting Homework
