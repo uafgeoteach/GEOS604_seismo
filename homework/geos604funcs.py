@@ -1,38 +1,97 @@
 """ 
 General behind the scenes functions for homework notebooks when the backend is not important for course material
+
+.. note::
+    Wave Equation Animation (wave_eq_animation)
+
+    This is not my function, it was copied and modifed from:
+    https://github.com/sachabinder/wave_equation_simulations/blob/main/1D_WAVE-EQ_variable-velocity.py
+
+    Along with helper functions anim_1D() and gaussian()
+
+    All credit goes to the original author, Sacha Binder
+
+    Citation: Sacha BINDER. Étude de l’observation et de la modélisation des ondes 
+    de surface en eau peu profonde. Physique-Informatique.TIPE session 2021.
+    
+    I have modified the codes to work as a callable function with modifiable input variables so that we may 
+    use it in a Jupyter notebook for UAF GEOS604. I also changed some of the variable names to be easier
+    to read. I have not touched any of the core-functionality of the underlying FD scheme.
 """
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import matplotlib.animation as animation
 from numpy import e, pi, sin, cos
 plt.rcParams["animation.html"] = "jshtml"  # needed to show animations inline 
 
 
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+
+
+def plot_waveforms(st, st_2=None, fmt="relative"):
+    """
+    Generic Obspy Stream waveform plotter for use in GEOS419 Time Series Lab
+    
+    :type st: obspy.core.stream.Stream
+    :param st: Stream object to plot
+    :type st_2: obspy.core.stream.Stream
+    :param st_2: Optional second stream to plot together with `st` on the same axis
+    :type fmt: str
+    :param fmt: x-axis label formatter, 'absolute' for timestamps, 'relative' for starttime t=0
+    """
+    f, axs = plt.subplots(len(st), figsize=(10, 8), sharex=True, sharey=True)
+    plt.subplots_adjust(hspace=0.025)
+    
+    # X-axis formatting
+    if fmt == "absolute":
+        time_format = "matplotlib"
+        axs[-1].xaxis.set_major_formatter(mdates.DateFormatter("%H:%M:%S"))  # %H:%M:%S.%f
+        axs[-1].tick_params(axis="x", labelrotation=20)
+    else:
+        time_format = "relative"
+
+    # Make copies so we can sort the waveforms in-place
+    st_plot = st.copy()
+    st_plot.sort()
+    time = st_plot[0].times(time_format)  # assuming all have the same time axis
+    
+    # Determine what to do if we plot two waveforms or just one
+    if st_2 is None:
+        st_2_plot = [None for _ in range(len(st))]
+    else:
+        st_2_plot = st_2.copy()
+        st_2_plot.sort()
+        time_2 = st_2_plot[0].times(time_format)
+    
+    # Loop through each trace and plot
+    for i, (tr, tr_2) in enumerate(zip(st_plot, st_2_plot)):
+        axs[i].plot(time, tr.data, label=tr.get_id(), c="k", lw=0.75,
+                    zorder=10)
+        # Plot the second set of waveforms below and slightly transparent 
+        if tr_2:
+            axs[i].plot(time_2, tr_2.data, label=tr_2.get_id(), c="r", lw=0.75,
+                        zorder=9, alpha=0.75)
+            
+        axs[i].legend(loc="upper right", frameon=False)
+        axs[i].grid()
+        
+    # General Plot Aesthetics
+    axs[0].set_title(f"{st[0].stats.starttime} - {st[0].stats.endtime}")
+    axs[-1].set_xlabel("Time [s]")
+    axs[int((len(st)-1)/2)].set_ylabel("Amplitude")
+    plt.xlim([time.min(), time.max()])
+    
+    plt.show()
+
+    
 def wave_eq_animation(length_of_string=1.5, duration_of_simulation=3,
                       junction=0.7, c_1=1.0, c_2=0.5, source_location=0,
                       source_location_2=None, source_1_sign=1, source_2_sign=1,
                       left_bound_cond="neumann", right_bound_cond="dirichlet",
-                      show_junction=False):
+                      show_junction=False, export_mp4=False, **kwargs):
     """
-    Solve the 1D wave equation with finite differences and then plot an animation
-
-    .. note::
-        This is not my function, it was copied and modifed from:
-        https://github.com/sachabinder/wave_equation_simulations/blob/main/1D_WAVE-EQ_variable-velocity.py
-    
-        Along with helper functions anim_1D() and gaussian()
-    
-        All credit goes to the original author, Sacha Binder
-    
-        Citation: Sacha BINDER. Étude de l’observation et de la modélisation des ondes 
-        de surface en eau peu profonde. Physique-Informatique.TIPE session 2021.
-        
-        I have modified the codes to work as a callable function with modifiable input 
-        variables so that we may use it in a Jupyter notebook for UAF GEOS604. I also changed 
-        some of the variable names to be easier to read. I have not touched any of the 
-        corefunctionality of the underlying FD scheme.
-
-        
     Solve the 1D Wave equation and plot
     This file was built to solve numerically a classical PDE, 1D wave equation. 
 
@@ -149,7 +208,7 @@ def wave_eq_animation(length_of_string=1.5, duration_of_simulation=3,
     if not show_junction:
         junction = None
     anim1 = anim_1D(X, U, dt, 10, xlim=(0, length_of_string), 
-                    ylim=(-1.0,1.5), junction=junction)
+                    ylim=(-1.0,1.5), junction=junction, export_mp4=export_mp4)
 
     plt.show()
     
@@ -179,6 +238,8 @@ def normal_mode_seismogram(
     :type show_modes: bool
     :param show_modes: Plot the mode wiggles or just the sum
     """
+    plt.close("all") 
+    
     # Initialize Empty Displacement field for t=0
     time = np.linspace(0, seismogram_duration_s, nstep)
     displacement = np.zeros(nstep)
@@ -333,23 +394,23 @@ def gaussian(x, b):
     return np.exp(-(x-b)**2/0.01)
     
 
-def wave_eq_preset(choice=0, percent=None):
+def wave_eq_preset(choice=0, percent=None, **kwargs):
     """
     Example 1 of wave eq. animation, so that student's aren't exposed to the 
     chosen variables
     """
     if choice == 0:
-        wave_eq_animation()
+        wave_eq_animation(**kwargs)
     elif choice == 1:
-        wave_eq_animation(c_2=1.5)
+        wave_eq_animation(c_2=1.5, **kwargs)
     elif choice == 2:
         c_1 = 1.0
         c_2 = c_1 * (1 + percent)
-        wave_eq_animation(c_2=c_2)
+        wave_eq_animation(c_2=c_2, **kwargs)
 
         
 def anim_1D(x, y, pas_de_temps, pas_d_images, junction=None, 
-            xlim=(0, 4), ylim=(-4, 4)):
+            xlim=(0, 4), ylim=(-4, 4), export_mp4=False):
     """
     Function allowing to display an animation of the wave equation based on 
     calculation results with a given time step. This function can be used to 
@@ -389,5 +450,9 @@ def anim_1D(x, y, pas_de_temps, pas_d_images, junction=None,
     # call the animator. blit=True means only re-draw the parts that have changed.
     anim = animation.FuncAnimation(fig, animate, init_func=init, 
                                    frames=y.shape[1]//pas_d_images, interval=10)
+
+    if export_mp4:
+        FFwriter = animation.FFMpegWriter(fps=20)
+        anim.save(export_mp4, writer=FFwriter)
 
     return anim
