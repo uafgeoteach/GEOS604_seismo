@@ -27,12 +27,11 @@ from obspy.imaging.beachball import aux_plane
 from numpy import e, pi, sin, cos
 plt.rcParams["animation.html"] = "jshtml"  # needed to show animations inline 
 
-
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 
-def plot_polarities(takeoff_angles, azimuths, polarities, 
+def plot_polarities(takeoff_angles=None, azimuths=None, polarities=None, 
                     stations=None, nodal_plane=None):
     """
     Modified from Calum Chamberlain's GPHS445 Focal Mechanisms
@@ -49,51 +48,57 @@ def plot_polarities(takeoff_angles, azimuths, polarities,
     """
     f = plt.figure()
     ax = f.add_subplot(111, projection="stereonet")
-    if stations is None:
-        stations = [None] * len(azimuths)
-
-    # loop through all lists, assuming they are the same lengths
-    for toa, az, pol, sta in zip(takeoff_angles, azimuths, polarities, stations):
-        assert(0 <= toa <= 180), "takeoff angle must between between 0 and 180"
-        if 0 <= toa <= 90:
-            toa = 90 - toa  # complement for downward angles
-        elif 90 <= toa <= 180:
-            toa = 270 - toa  # project upward angles
-        if pol == "+":
-            kwargs = {"color": "red", "marker": "^"}
-        elif pol == "-":
-            kwargs= {"marker": "v", "markeredgecolor": 'black', "markerfacecolor": "white"}
-        elif pol == "?":
-            kwargs = {"label": "Unknown", "color": "black", "marker": "x"}
-        else:
-            raise Exception("polarities should be: '+', '-', '?'")
-                            
-        az -= 90
-        az % 360  # ensure boundedness
-        ax.rake(az, toa, 90, **kwargs)
-        
-        # Add text label 
-        if sta is not None:
-            lon, lat = mplstereonet.rake(az, toa, 90)
-            ax.text(lon[0], lat[0], sta, size=10)
+    ax.grid()
     
-        ax.grid()
+    if azimuths:
+        # Make labels optional but iterable
+        if not stations:
+            stations = [None] * len(azimuths)
 
-    # Plot nodal plane and auxiliary plane
+        # Loop through all lists, assuming they are the same lengths
+        for toa, az, pol, sta in zip(takeoff_angles, azimuths, polarities, stations):
+            if toa == -1:
+                continue
+            assert(0 <= toa <= 180), "takeoff angle must between between 0 and 180"
+            if 0 <= toa <= 90:
+                toa = 90 - toa  # complement for downward angles
+            elif 90 <= toa <= 180:
+                toa = 270 - toa  # project upward angles
+            if pol == "+":
+                kwargs = {"color": "red", "marker": "^"}
+            elif pol == "-":
+                kwargs= {"marker": "v", "markeredgecolor": 'black', "markerfacecolor": "white"}
+            elif pol == "?":
+                kwargs = {"label": "Unknown", "color": "black", "marker": "x"}
+            else:
+                raise Exception("polarities should be: '+', '-', '?'")
+                                
+            az -= 90
+            az % 360  # ensure boundedness
+            ax.rake(az, toa, 90, **kwargs)
+            
+            # Add text label 
+            if sta is not None:
+                lon, lat = mplstereonet.rake(az, toa, 90)
+                ax.text(lon[0], lat[0], sta, size=10)
+
+    # Plot nodal plane and calculate and plot auxiliary plane
     if nodal_plane:  
         strike, dip, rake = nodal_plane
         strike = strike % 360
         if rake > 180:
             rake -= 360
-        ax.plane(strike, dip, rake, c="C1")
-        ax.rake(strike, dip, -1 * rake, c="C1")  # rake is measured CCW from horizontal for seismologists but CW for geologists
-        ax.pole(strike, dip, markeredgecolor="C1", markerfacecolor="None")
+        ax.plane(strike, dip, rake, c="C0")
+        # Note that rake is measured CCW from horizontal for seismologists but CW for geologists
+        ax.rake(strike, dip, -1 * rake, c="C0") 
+        ax.pole(strike, dip, markeredgecolor="C0", markerfacecolor="None", 
+                markersize=10)
         # Get the SDR of the auxiliary plane
         s2, d2, r2 = aux_plane(strike, dip, rake)
-        ax.plane(s2, d2, r2, c="C2")
-        ax.rake(s2, d2, -1 * r2, c="C2")  # rake is measured CCW from horizontal for seismologists but CW for geologists
-        ax.pole(s2, d2, markeredgecolor="C2", markerfacecolor="None")
-
+        ax.plane(s2, d2, r2, c="C1")
+        ax.rake(s2, d2, -1 * r2, c="C1")  
+        ax.pole(s2, d2, markeredgecolor="C1", markerfacecolor="None", 
+                markersize=10)
 
     plt.show()
     
