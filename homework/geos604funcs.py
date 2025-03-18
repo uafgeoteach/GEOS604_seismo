@@ -27,6 +27,7 @@ from obspy.imaging.beachball import aux_plane
 from numpy import e, pi, sin, cos
 plt.rcParams["animation.html"] = "jshtml"  # needed to show animations inline 
 
+
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
@@ -68,8 +69,10 @@ def plot_polarities(takeoff_angles=None, azimuths=None, polarities=None,
                 kwargs = {"color": "red", "marker": "^"}
             elif pol == "-":
                 kwargs= {"marker": "v", "markeredgecolor": 'black', "markerfacecolor": "white"}
-            elif pol == "?":
+            elif pol == "x":
                 kwargs = {"label": "Unknown", "color": "black", "marker": "x"}
+            elif pol == "?":
+                kwargs = {"label": "Unknown", "color": "black", "marker": "o"}
             else:
                 raise Exception("polarities should be: '+', '-', '?'")
                                 
